@@ -3,14 +3,12 @@ package ru.ilya.moviereviews.data.local.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import ru.ilya.moviereviews.domain.model.Link
-import ru.ilya.moviereviews.domain.model.Multimedia
 
-@Entity(tableName = "Reviews")
+@Entity(tableName = "reviewsTable")
 data class ReviewEntity(
 
-    @PrimaryKey
-    val id: Int? = null,
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
 
     @ColumnInfo(name = "display_title")
     val displayTitle: String,

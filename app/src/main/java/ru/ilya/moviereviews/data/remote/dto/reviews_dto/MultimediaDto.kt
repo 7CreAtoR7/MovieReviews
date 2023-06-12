@@ -1,4 +1,4 @@
-package ru.ilya.moviereviews.data.remote.dto
+package ru.ilya.moviereviews.data.remote.dto.reviews_dto
 
 import com.google.gson.annotations.SerializedName
 

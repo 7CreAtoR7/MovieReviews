@@ -1,4 +1,4 @@
-package ru.ilya.moviereviews.data.remote.dto
+package ru.ilya.moviereviews.data.remote.dto.reviews_dto
 
 import com.google.gson.annotations.SerializedName
 
@@ -26,7 +26,7 @@ data class ReviewDto(
     val mpaaRating: String? = null,
 
     @SerializedName("multimedia")
-    val multimedia: MultimediaDto,
+    val multimedia: MultimediaDto? = null,
 
     @SerializedName("opening_date")
     val openingDate: String? = null,
