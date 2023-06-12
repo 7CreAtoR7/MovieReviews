@@ -7,8 +7,8 @@
         android:icon="@drawable/ic_reviews"/>
 
     <item
-        android:id="@+id/navigation_critique"
-        android:title="@string/critique"
-        android:icon="@drawable/critique_logo"/>
+        android:id="@+id/navigation_critics"
+        android:title="@string/critics"
+        android:icon="@drawable/critic_logo"/>
 
 </menu>

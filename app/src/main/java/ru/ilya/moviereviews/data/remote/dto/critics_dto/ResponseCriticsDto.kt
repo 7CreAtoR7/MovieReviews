@@ -1,20 +1,17 @@
-package ru.ilya.moviereviews.data.remote.dto
+package ru.ilya.moviereviews.data.remote.dto.critics_dto
 
 import com.google.gson.annotations.SerializedName
 
-data class ResponseReviewDto(
+data class ResponseCriticsDto(
 
     @SerializedName("copyright")
     val copyright: String? = null,
 
-    @SerializedName("has_more")
-    val hasMore: Boolean? = null,
-
     @SerializedName("num_results")
-    val numResults: Int? = null,
+    val num_results: Int? = null,
 
     @SerializedName("results")
-    val results: List<ReviewDto> = emptyList(),
+    val results: List<CriticDto>? = null,
 
     @SerializedName("status")
     val status: String? = null

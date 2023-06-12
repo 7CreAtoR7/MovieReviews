@@ -1,4 +1,4 @@
-package ru.ilya.moviereviews.domain.model
+package ru.ilya.moviereviews.domain.model.review_model
 
 
 data class Review(

@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">Movie Reviews</string>
     <string name="reviews">Reviews</string>
-    <string name="critique">Critique</string>
+    <string name="critics">Critics</string>
+    <string name="read_review">Read Review</string>
+    <string name="load_error">Что-то пошло не так , повторите позже.</string>
+    <string name="try_again">Попробовать ещё раз</string>
+    <string name="search_review">Поиск рецензии..</string>
+    <string name="search_critic">Поиск критика..</string>
+    <string name="status">Статус:</string>
+    <string name="no_status">не указан</string>
+    <string name="no_bio">Нет краткой информации о критике</string>
 </resources>

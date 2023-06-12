@@ -4,26 +4,29 @@ import android.app.Application
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import ru.ilya.moviereviews.data.local.dao.CriticsDao
 import ru.ilya.moviereviews.data.local.dao.ReviewsDao
+import ru.ilya.moviereviews.data.local.entity.CriticEntity
 import ru.ilya.moviereviews.data.local.entity.ReviewEntity
 
 @Database(
-    entities = [ReviewEntity::class],
+    entities = [ReviewEntity::class, CriticEntity::class],
     version = 1,
     exportSchema = false
 )
-abstract class ReviewsDatabase : RoomDatabase() {
+abstract class AppDatabase : RoomDatabase() {
 
-    // абстрактный метод, возвращающий реализацию Dao для SubscribedStreams
     abstract fun reviewsDao(): ReviewsDao
+
+    abstract fun criticsDao(): CriticsDao
 
     companion object {
 
-        private var INSTANCE: ReviewsDatabase? = null
+        private var INSTANCE: AppDatabase? = null
         private val LOCK = Any()
-        private const val DB_NAME = "ReviewsApp.db"
+        private const val DB_NAME = "CriticsReviews2.db"
 
-        fun getInstance(application: Application): ReviewsDatabase {
+        fun getInstance(application: Application): AppDatabase {
             INSTANCE?.let {
                 return it
             }
@@ -33,7 +36,7 @@ abstract class ReviewsDatabase : RoomDatabase() {
                 }
                 val db = Room.databaseBuilder(
                     application,
-                    ReviewsDatabase::class.java,
+                    AppDatabase::class.java,
                     DB_NAME
                 )
                     .fallbackToDestructiveMigration()
