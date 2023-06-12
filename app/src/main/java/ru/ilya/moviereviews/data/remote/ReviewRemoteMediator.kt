@@ -23,11 +23,11 @@ class ReviewRemoteMediator @Inject constructor(
     private val dateRange: DateRange?
 ) : RemoteMediator<Int, ReviewEntity>() {
 
-    private var pageIndex = 0
+    private var pageIndex = INIT_PAGE
 
     private fun getPageIndex(loadType: LoadType): Int? {
         pageIndex = when (loadType) {
-            LoadType.REFRESH -> 0
+            LoadType.REFRESH -> INIT_PAGE
             LoadType.PREPEND -> return null
             LoadType.APPEND -> ++pageIndex
         }
@@ -71,5 +71,10 @@ class ReviewRemoteMediator @Inject constructor(
             MediatorResult.Error(e)
 
         }
+    }
+
+    companion object {
+
+        private const val INIT_PAGE = 0
     }
 }

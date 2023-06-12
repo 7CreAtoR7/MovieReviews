@@ -19,7 +19,7 @@ class MovieReviewsViewModel @Inject constructor(
     private val getReviewUseCase: GetReviewUseCase
 ) : ViewModel() {
 
-    private val queryLiveData = MutableLiveData("")
+    private val queryLiveData = MutableLiveData(EMPTY_QUERY)
 
     var query: String?
         get() = queryLiveData.value
@@ -30,15 +30,14 @@ class MovieReviewsViewModel @Inject constructor(
     @OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
     val reviewsFlow = queryLiveData.asFlow()
         .distinctUntilChanged()
-        .debounce(500)
+        .debounce(MILLIS_TO_WAIT)
         .flatMapLatest {
             getReviewUseCase(query = it, null)
         }
         .cachedIn(viewModelScope)
 
 
-
-    private val dateRangeLiveData = MutableLiveData(DateRange("", ""))
+    private val dateRangeLiveData = MutableLiveData(DateRange(EMPTY_DATE, EMPTY_DATE))
 
     var dateRange: DateRange?
         get() = dateRangeLiveData.value
@@ -54,4 +53,11 @@ class MovieReviewsViewModel @Inject constructor(
             getReviewUseCase(query = null, it)
         }
         .cachedIn(viewModelScope)
+
+    companion object {
+
+        private const val MILLIS_TO_WAIT = 500L
+        private const val EMPTY_DATE = ""
+        private const val EMPTY_QUERY = ""
+    }
 }

@@ -34,9 +34,9 @@ class MovieReviewsRepositoryImpl @Inject constructor(
     ): Flow<PagingData<Review>> {
         return Pager(
             config = PagingConfig(
-                pageSize = 20,
-                initialLoadSize = 1,
-                prefetchDistance = 0
+                pageSize = PAGE_SIZE,
+                initialLoadSize = INITIAL_LOAD,
+                prefetchDistance = SINCE_ELEMENTS_LOAD
             ),
             remoteMediator = ReviewRemoteMediator(
                 api = api,
@@ -75,13 +75,13 @@ class MovieReviewsRepositoryImpl @Inject constructor(
             } catch (e: IOException) {
                 emit(
                     Resource.Error(
-                        message = "Нет интернет соединения."
+                        message = INTERNET_CONNECTION_ERROR
                     )
                 )
             } catch (e: HttpException) {
                 emit(
                     Resource.Error(
-                        message = "Что-то пошло не так , повторите позже.",
+                        message = SOMETHING_WENT_WRONG,
                     )
                 )
             }
@@ -112,13 +112,13 @@ class MovieReviewsRepositoryImpl @Inject constructor(
                 } catch (e: IOException) {
                     emit(
                         Resource.Error(
-                            message = "Нет интернет соединения."
+                            message = INTERNET_CONNECTION_ERROR
                         )
                     )
                 } catch (e: HttpException) {
                     emit(
                         Resource.Error(
-                            message = "Что-то пошло не так , повторите позже.",
+                            message = SOMETHING_WENT_WRONG,
                         )
                     )
                 }
@@ -129,4 +129,14 @@ class MovieReviewsRepositoryImpl @Inject constructor(
                 emit(Resource.Success(newCritics))
             }
         }
+
+    companion object {
+
+        private const val PAGE_SIZE = 20
+        private const val INITIAL_LOAD = 1
+        private const val SINCE_ELEMENTS_LOAD = 0
+
+        private const val INTERNET_CONNECTION_ERROR = "Нет интернет соединения."
+        private const val SOMETHING_WENT_WRONG = "Что-то пошло не так , повторите позже."
+    }
 }
