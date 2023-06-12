@@ -1,5 +1,6 @@
 package ru.ilya.moviereviews.presentation.critics_screen
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.*
@@ -68,10 +69,11 @@ class CriticsViewModel @Inject constructor(
                             )
                         }
                         is Resource.Error -> {
+                            Log.e("REVIEW_MEDIATOR", "отправка ошибки ${result.message}")
                             _state.emit(
                                 UIState.Error(
                                     message = result.message
-                                        ?: "Что-то пошло не так , повторите позже."
+                                        ?: "Что-то пошло не так, повторите позже."
                                 )
                             )
                         }
